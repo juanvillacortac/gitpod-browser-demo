@@ -1,6 +1,12 @@
-image:
-  file: Dockerfile
+image: gitpod/workspace-full-vnc:latest
+
 ports:
   - port: 6080
+
 tasks:
-  - command: "firefox https://www.youtube.com/watch?v=D41zSHJthZI"
+  - init: |
+    apt-get update \
+      && apt-get install -y firefox matchbox twm \
+      && apt-get clean && rm -rf /var/cache/apt/* && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
+  - command: |
+    firefox https://www.youtube.com/watch?v=D41zSHJthZI
